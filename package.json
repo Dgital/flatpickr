@@ -1,10 +1,10 @@
 {
-  "name": "flatpickr",
-  "version": "4.4.0",
+  "name": "@dgital/flatpickr",
+  "version": "4.4.0-dgital1",
   "description": "A lightweight, powerful javascript datetime picker",
   "scripts": {
     "build": "run-s build:pre build:build build:post",
-    "build:pre": "rm -rf dist && mkdir -p dist/themes",
+    "build:pre": "rimraf dist && mkdirp dist/themes",
     "build:build": "ts-node build.ts",
     "build:post": "sh ./emitDeclarations.sh",
     "start": "npm run build:build -- --dev",
@@ -41,8 +41,10 @@
     "jest": "22.4.3",
     "lint-staged": "^7.0.0",
     "magic-string": "^0.24.0",
+    "mkdirp": "^0.5.1",
     "npm-run-all": "^4.1.1",
     "prettier": "^1.11.1",
+    "rimraf": "^3.0.0",
     "rollup": "^0.57.1",
     "rollup-plugin-babel": "^4.0.0-beta.3",
     "rollup-plugin-livereload": "^0.6.0",
@@ -61,12 +63,12 @@
   "types": "./dist/typings.d.ts",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/chmln/flatpickr.git"
+    "url": "git+https://github.com/Dgital/flatpickr.git"
   },
   "author": "Gregory <gregory.mkv@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/chmln/flatpickr/issues"
+    "url": "https://github.com/Dgital/flatpickr/issues"
   },
   "homepage": "https://chmln.github.io/flatpickr",
   "keywords": [
