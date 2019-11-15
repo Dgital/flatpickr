@@ -603,18 +603,19 @@ function FlatpickrInstance(
     dayNumber: number,
     i: number
   ) {
+    const iosDate = new Date(date.getTime() + 2 * 3600 * 1000);
     const dateIsEnabled = isEnabled(date, true),
       dayElement = createElement<DayElement>(
         "span",
         "flatpickr-day " + className,
-        date.getDate().toString()
+        iosDate.getDate().toString()
       );
 
     dayElement.dateObj = date;
     dayElement.$i = i;
     dayElement.setAttribute(
       "aria-label",
-      self.formatDate(date, self.config.ariaDateFormat)
+      self.formatDate(iosDate, self.config.ariaDateFormat)
     );
 
     if (compareDates(date, self.now) === 0) {
@@ -694,10 +695,7 @@ function FlatpickrInstance(
 
   function buildMonthDays(year: number, month: number) {
     const firstOfMonth =
-      (new Date(year, month, 1, 12, 0, 0).getDay() -
-        self.l10n.firstDayOfWeek +
-        7) %
-      7;
+      (new Date(year, month, 1).getDay() - self.l10n.firstDayOfWeek + 7) % 7;
 
     const prevMonthDays = self.utils.getDaysInMonth((month - 1 + 12) % 12);
 
@@ -716,7 +714,7 @@ function FlatpickrInstance(
       days.appendChild(
         createDay(
           "prevMonthDay",
-          new Date(year, month - 1, dayNumber, 12, 0, 0),
+          new Date(year, month - 1, dayNumber),
           dayNumber,
           dayIndex
         )
@@ -726,12 +724,7 @@ function FlatpickrInstance(
     // Start at 1 since there is no 0th day
     for (dayNumber = 1; dayNumber <= daysInMonth; dayNumber++, dayIndex++) {
       days.appendChild(
-        createDay(
-          "",
-          new Date(year, month, dayNumber, 12, 0, 0),
-          dayNumber,
-          dayIndex
-        )
+        createDay("", new Date(year, month, dayNumber), dayNumber, dayIndex)
       );
     }
 
@@ -745,7 +738,7 @@ function FlatpickrInstance(
       days.appendChild(
         createDay(
           "nextMonthDay",
-          new Date(year, month + 1, dayNum % daysInMonth, 12, 0, 0),
+          new Date(year, month + 1, dayNum % daysInMonth),
           dayNum,
           dayIndex
         )
