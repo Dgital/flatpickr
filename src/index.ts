@@ -1559,12 +1559,13 @@ function FlatpickrInstance(
   }
 
   function open(e?: Event, positionElement: HTMLElement = self._input) {
-    if (self.isMobile === true) {
-      if (e) {
-        e.preventDefault();
-        e.target && (e.target as HTMLInputElement).blur();
-      }
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      e.target && (e.target as HTMLInputElement).blur();
+    }
 
+    if (self.isMobile === true) {
       setTimeout(() => {
         self.mobileInput !== undefined && self.mobileInput.click();
       }, 0);

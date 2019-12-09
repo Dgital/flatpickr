@@ -1,6 +1,6 @@
 {
   "name": "@dgital/flatpickr",
-  "version": "4.4.0-dgital2",
+  "version": "4.4.0-dgital4",
   "description": "A lightweight, powerful javascript datetime picker",
   "scripts": {
     "build": "run-s build:pre build:build build:post",
@@ -14,6 +14,7 @@
     "test:typecheck": "tsc -p src --noEmit",
     "test:unit": "jest --config .jest.json",
     "coveralls": "jest --config .jest.json --coverage && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
+    "dist": "npm run build && npm publish",
     "precommit": "lint-staged"
   },
   "dependencies": {
